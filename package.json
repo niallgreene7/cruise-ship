@@ -1,0 +1,25 @@
+{
+  "name": "cruise-ships",
+  "version": "1.0.0",
+  "description": "cruise-ship",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niallgreene7/cruise-ship.git"
+  },
+  "keywords": [
+    "cruise"
+  ],
+  "author": "niall",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/niallgreene7/cruise-ship/issues"
+  },
+  "homepage": "https://github.com/niallgreene7/cruise-ship#readme",
+  "devDependencies": {
+    "jest": "^26.0.1"
+  }
+}
