@@ -6,14 +6,20 @@ describe('Port', () => {
     it('can be installed', () => {
         expect(new Port()).toBeInstanceOf(Object);
     })
+})
+
+describe('Ship DRY', () => {
+    let port;
+    
+    beforeEach(() => {
+        port = new Port('Dover');
+    })
 
     it('can be installed', () => {
-        const port = new Port('Southampton');
-        expect(port.name).toBe('Southampton');
+        expect(port.name).toBe('Dover');
     })
 
     it('can add a ship', () => {
-        const port = new Port('Dover');
         const ship = {};
 
         port.addShip(ship);
@@ -21,7 +27,6 @@ describe('Port', () => {
     })
 
     it('can remove a ship', () => {
-        const port = new Port('Dover');
         const titanic = {};
         const queenMary = {}
 
@@ -30,6 +35,4 @@ describe('Port', () => {
         port.removeShip(queenMary);
         expect(port.activeShips).toContain(titanic);
     })
-
 })
-

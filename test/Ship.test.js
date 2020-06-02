@@ -4,40 +4,10 @@ const Itinerary = require('../src/Itinerary.js');
 
 describe('Ship', () => {
     it('can be installed', () => {
-        const port = new Port('Dover');
-        const itinerary = new Itinerary([port])
+        const dover = new Port('Dover');
+        const calais = new Port('calais');
+        const itinerary = new Itinerary([dover, calais])
         expect(new Ship(itinerary)).toBeInstanceOf(Object);
-    })
-
-    it('has a starting point', () => {
-        const dover = new Port('Dover');
-        const calais = new Port('Calais');
-        const itinerary = new Itinerary([dover, calais])
-        const ship = new Ship(itinerary);
-        expect(ship.startingPort).toBe(dover);
-    })
-
-    it('set sail', () => {
-        const dover = new Port('Dover');
-        const calais = new Port('Calais');
-        const itinerary = new Itinerary([dover, calais])
-        const ship = new Ship(itinerary);
-        ship.setSail();
-        expect(ship.startingPort).toBefFalsy;
-        expect(dover.activeShips).not.toContain(ship);
-    })
-
-    it('dock at a new port', () => {
-        const dover = new Port('Dover');
-        const calais = new Port('Calais');
-        const itinerary = new Itinerary([dover, calais])
-        const ship = new Ship(itinerary);
-        
-        ship.setSail();
-        ship.dock()
-
-        expect(calais.activeShips).toContain(ship)
-        //expect(ship.setSail()).toThrowError('End of itinerary reached')
     })
 
     it('dock at a new port', () => {
@@ -48,4 +18,37 @@ describe('Ship', () => {
         expect(dover.activeShips).toContain(ship)
     })
 
+})
+
+describe('Ship DRY', () => {
+    let ship;
+    let dover;
+    let calais;
+    let itinerary;
+    
+    beforeEach(() => {
+        dover = new Port('Dover');
+        calais = new Port('Calais');
+        itinerary = new Itinerary([dover, calais]);
+        ship = new Ship(itinerary);
+    })
+    
+    it('has a starting point', () => {
+        expect(ship.startingPort).toBe(dover);
+    })
+
+    it('set sail', () => {
+        ship.setSail();
+        expect(ship.startingPort).toBefFalsy;
+        expect(dover.activeShips).not.toContain(ship);
+    })
+
+    it('dock at a new port', () => {
+        
+        ship.setSail();
+        ship.dock()
+
+        expect(calais.activeShips).toContain(ship)
+        //expect(ship.setSail()).toThrowError('End of itinerary reached')
+    })
 })
