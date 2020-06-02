@@ -14,7 +14,6 @@ describe('Ship', () => {
         const dover = new Port('Dover');
         const itinerary = new Itinerary([dover])
         const ship = new Ship(itinerary);
-        
         expect(dover.activeShips).toContain(ship)
     })
 
@@ -44,10 +43,8 @@ describe('Ship DRY', () => {
     })
 
     it('dock at a new port', () => {
-        
         ship.setSail();
         ship.dock()
-
         expect(calais.activeShips).toContain(ship)
         //expect(ship.setSail()).toThrowError('End of itinerary reached')
     })

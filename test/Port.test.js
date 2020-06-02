@@ -20,16 +20,14 @@ describe('Ship DRY', () => {
     })
 
     it('can add a ship', () => {
-        const ship = {};
-
+        const ship = jest.fn();
         port.addShip(ship);
         expect(port.activeShips).toContain(ship);
     })
 
     it('can remove a ship', () => {
-        const titanic = {};
-        const queenMary = {}
-
+        const titanic = jest.fn();
+        const queenMary = jest.fn()
         port.addShip(titanic);
         port.addShip(queenMary);
         port.removeShip(queenMary);
