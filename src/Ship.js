@@ -4,6 +4,7 @@ class Ship{
         this.startingPort = this.itinerary.fullItinerary[0]
         this.currentPort = this.startingPort;
         this.previousPort = null;
+        this.startingPort.addShip(this)
     }
 
     setSail(){
@@ -16,7 +17,7 @@ class Ship{
 
         this.previousPort = this.currentPort;
         this.currentPort = null;
-        
+        this.previousPort.removeShip(this)
 
     }   
 
@@ -24,6 +25,7 @@ class Ship{
         const itinerary = this.itinerary
         const previousPortIndex = itinerary.fullItinerary.indexOf(this.previousPort);
         this.currentPort = itinerary.fullItinerary[previousPortIndex +1];
+        this.currentPort.addShip(this)
     }
 
 }
